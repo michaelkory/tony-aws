@@ -24,7 +24,7 @@ tower_user_name:
 key_name: toharris_laptop
 instance_type: t2.micro
 image: ami-0ebff4493a767ad26
-wait: 600
+wait: true
 group: toharris_sg_satellite
 wait_timeout: 500
 count: 1
