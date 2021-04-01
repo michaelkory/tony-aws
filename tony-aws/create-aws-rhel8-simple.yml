@@ -11,48 +11,7 @@
 
 
     tasks:
-    - name: 'Preflight Varible check :: subnet_name'
-      fail: msg='Please include the subnet_name to the variable "subnet_name"'
-      run_once: true
-      when: 'subnet_name is not defined'
-    - name: 'Preflight Varible check :: key_name'
-      fail: msg='Please include the key_name to the variable "key_name"'
-      run_once: true
-      when: 'key_name is not defined'
-    - name: 'Preflight Varible check :: image'
-      fail: msg='Please include the image to the variable "image"'
-      run_once: true
-      when: 'image is not defined'
-    - name: 'Preflight Varible check :: count'
-      fail: msg='Please include the count to the variable "count"'
-      run_once: true
-      when: 'count is not defined'
-    - name: 'Preflight Varible check :: region'
-      fail: msg='Please include the region to the variable "region"'
-      run_once: true
-      when: 'region is not defined'
-    - name: 'Preflight Varible check :: assign_public_ip'
-      fail: msg='Please include the assign_public_ip to the variable "assign_public_ip"'
-      run_once: true
-      when: 'assign_public_ip is not defined'
-    - name: 'Preflight Varible check :: alwaysup'
-      fail: msg='Please include the alwaysup to the variable "alwaysup"'
-      run_once: true
-      when: 'alwaysup is not defined'
-    - name: 'Preflight Varible check :: server_pre_name'
-      fail: msg='Please include the server_pre_name to the variable "server_pre_name"'
-      run_once: true
-      when: 'server_pre_name is not defined'
-    - name: 'Preflight Varible check :: deleteby'
-      fail: msg='Please include the deleteby to the variable "deleteby"'
-      run_once: true
-      when: 'deleteby is not defined'
-    - name: 'Preflight Varible check :: group'
-      fail: msg='Please include the group to the variable "group"'
-      run_once: true
-      when: 'group is not defined'  
-
-    - name: Creating {{count}} AWS VMs in {{region}}
+    - name: Creating {{target_hostname}} on AWS in the {{region}} region
       ec2:
        key_name: "{{key_name}}"
        instance_type: "{{instance_type}}"
@@ -66,7 +25,7 @@
        assign_public_ip: "{{assign_public_ip}}"
        instance_tags:
          AlwaysUp: "{{alwaysup}}"
-         Name: "{{server_pre_name}}"
+         Name: "{{target_hostname}}"
          Createdby: Ansible Tower
          Contact: "{{my_email_address}}"
          DeleteBy: "{{deleteby}}"

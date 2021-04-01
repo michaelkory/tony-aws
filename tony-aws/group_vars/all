@@ -35,3 +35,5 @@ alwaysup: false
 server_pre_name: toharris
 deleteby: never
 my_email_address: toharris@redhat.com
+subnet_name: toharris_subnet_1
+target_hostname: toharris_undefined
