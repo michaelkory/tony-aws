@@ -1,4 +1,4 @@
---
+---
   - name: Get instances info
     hosts: localhost
     connection: local
