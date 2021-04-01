@@ -1,10 +1,10 @@
 # AWS Specific Variables
 ec2_access_key:
-ec2_secret_key:
-ec2_zone:
+ec2_secret_key: 
+ec2_zone: 
 ec2_keypair: toharris_laptop
 ec2_region: us-west-1
-ec2_security_group: 
+ec2_security_group: vpc-0cf18c46f61e64046
 ec2_tag_name_prefix: toharris
 #ec2_image: ami-77a2a317 # RHEL-7.4 on 1/3/2018
 #ec2_image: ami-c8020fa8 # RHEL-7.4 on 1/22/2018
