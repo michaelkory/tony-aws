@@ -1,5 +1,5 @@
 ---
-  - name: Get instances info
+  - name: Deploying AWS instance
     hosts: localhost
     connection: local
     gather_facts: no
