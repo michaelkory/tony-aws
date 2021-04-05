@@ -3,9 +3,6 @@
     hosts: localhost
     connection: local
     gather_facts: no
-    vars:
-       ec2_security_group_name: "toharris_sg_satellite"
-       my_email_address: "{{user_name}}@redhat.com"   
     vars_files:
     - group_vars/all
 
@@ -13,20 +10,33 @@
     tasks:
     - name: Creating {{target_hostname}} on AWS in the {{region}} region
       ec2:
-       key_name: "{{key_name}}"
-       instance_type: "{{instance_type}}"
-       image:  "{{image}}"
-       wait: "{{wait}}"
-       group: "{{ec2_security_group_name}}"
-       wait_timeout: 500
-       count: "{{count}}"
-       region: "{{region}}"
-       vpc_subnet_id:  "{{vpc_subnet_id}}"
-       assign_public_ip: "{{assign_public_ip}}"
-       instance_tags:
-         AlwaysUp: "{{alwaysup}}"
-         Name: "{{target_hostname}}"
-         Createdby: Ansible Tower
-         Contact: "{{my_email_address}}"
-         DeleteBy: "{{deleteby}}"
-         Type: "{{group}}"
+        key_name: "{{key_name}}"
+        instance_type: "{{instance_type}}"
+        image:  "{{image}}"
+        wait: "{{wait}}"
+        group: "{{group}}"
+        wait_timeout: 500
+        count: "{{count}}"
+        region: "{{region}}"
+        vpc_subnet_id:  "{{vpc_subnet_id}}"
+        assign_public_ip: "{{assign_public_ip}}"
+        instance_tags:
+          AlwaysUp: "{{alwaysup}}"
+          Name: "{{target_hostname}}"
+          Contact: "{{my_email_address}}"
+          DeleteBy: "{{deleteby}}"
+      register: ec2
+
+    - name: Waiting for SSH to come up on {{ target_hostname }}
+      wait_for:
+        host: "{{ item.public_dns_name }}"
+        port: 22
+        delay: 60
+        timeout: 320
+        state: started
+      with_items: "{{ ec2.instances }}"
+      async: 250
+      poll: 0
+      register: wait_result
+
+
