@@ -15,7 +15,7 @@
         image:  "{{image}}"
         wait: "{{wait}}"
         group: "{{group}}"
-        wait_timeout: 500
+        wait_timeout: 501
         count: "{{count}}"
         region: "{{region}}"
         vpc_subnet_id:  "{{vpc_subnet_id}}"
