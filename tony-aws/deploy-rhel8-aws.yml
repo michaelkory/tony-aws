@@ -15,7 +15,7 @@
         image:  "{{image}}"
         wait: "{{wait}}"
         group: "{{group}}"
-        wait_timeout: 502
+        wait_timeout: 503
         count: "{{count}}"
         region: "{{region}}"
         vpc_subnet_id:  "{{vpc_subnet_id}}"
@@ -48,9 +48,9 @@
       with_items:
       - "{{ ec2.instances }}"
 
-- name: Join Satellite and Apply Updates
-  hosts: new-hosts
-  tasks:
+  - name: Join Satellite and Apply Updates
+    hosts: new-hosts
+    tasks:
     - name: Install the katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }}
       yum:
         name: http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm
@@ -68,4 +68,3 @@
         name: "*"
         state: latest
       become: true
-    
