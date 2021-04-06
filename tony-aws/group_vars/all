@@ -18,4 +18,4 @@ subnet_name: toharris_subnet_1
 # Satellite specific vars
 activation_key: Development
 org_id: AWS
-
+sat6_fqdn: toharris-satellite.west.aws.redhat-demo.com
