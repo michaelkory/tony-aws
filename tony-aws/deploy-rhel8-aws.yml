@@ -46,6 +46,7 @@
 
   - name: Join Satellite and Apply Updates
     hosts: new-hosts
+    become: true
     tasks:
     - name: Install the katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }}
       yum:
@@ -63,4 +64,3 @@
       yum:
         name: "*"
         state: latest
-      become: true
