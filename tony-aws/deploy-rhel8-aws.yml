@@ -58,7 +58,6 @@
         state: present
         activationkey: "{{ activation_key }}"
         org_id: "{{ org_id }}"
-        autosubscribe: true
 
     - name: Apply Yum Updates
       yum:
