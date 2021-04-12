@@ -43,6 +43,14 @@
       with_items:
       - "{{ ec2.instances }}"
 
+  - name: Configuring hostname for {{ target_hostname }}
+    hosts: newhosts
+    become: true
+    tasks:
+    - name: Setting hostname to {{ target_hostname }}
+      ansible.builtin.hostname:
+        name: "{{ target_hostname }}"
+
   - name: Joining Satellite and Applying Updates
     hosts: newhosts
     become: true
