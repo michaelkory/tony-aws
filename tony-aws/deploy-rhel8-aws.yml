@@ -47,6 +47,9 @@
     hosts: newhosts
     become: true
     tasks:
+    - name: Waiting for system to come up
+      pause:
+        seconds: 15
     - name: Setting hostname to {{ target_hostname }}
       ansible.builtin.hostname:
         name: "{{ target_hostname }}"
