@@ -45,6 +45,7 @@
 
   - name: Configuring hostname for {{ target_hostname }}
     hosts: newhosts
+    gather_facts: no
     become: true
     tasks:
     - name: Waiting for system to come up
